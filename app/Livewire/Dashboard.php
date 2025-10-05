@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-class Admin extends Component
+class Dashboard extends Component
 {
     public $user;
     public function mount()
@@ -16,16 +16,14 @@ class Admin extends Component
             $this->user=Auth::user()->name;
         }
     }
-
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('auth.login')->with('error','You logged out successfully');
+        return redirect()->route('auth.login')->with('error','User logout successfully');
     }
-    
-    #[Layout('layouts.admin')]
+    #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.admin.admin');
+        return view('livewire.dashboard',['user'=>Auth::user()?->name]);
     }
 }

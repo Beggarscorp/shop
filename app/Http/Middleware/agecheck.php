@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class agecheck
+class AgeCheck
 {
     /**
      * Handle an incoming request.
@@ -15,6 +16,10 @@ class agecheck
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if(!Auth::check() && !$request->is('login'))
+        {
+            return redirect()->route('auth.login')->with('error','User not logged in');
+        }
         return $next($request);
     }
 }
