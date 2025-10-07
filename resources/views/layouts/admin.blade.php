@@ -11,13 +11,17 @@
 <body class="flex font-nunito bg-gray-100 h-screen overflow-hidden">
 
     {{-- Sidebar --}}
-    <div class="">Sidebar</div>
+    @livewire('components.adminsidebar')
 
     {{-- Admin Content --}}
-    <main class="flex-1 p-6 overflow-y-scroll">
-        {{ $slot }}
+    <main class="flex-1 overflow-y-scroll">
+        @livewire('components.adminheader')
+        <div class="p-5">
+            {{ $slot }}
+        </div>
     </main>
 
-    @livewireScripts
+    @livewireScripts    
+
 </body>
 </html>

@@ -8,19 +8,10 @@ use Livewire\Component;
 
 class Admin extends Component
 {
-    public $user;
-    public function mount()
-    {
-        if(Auth::check())
-        {
-            $this->user=Auth::user()->name;
-        }
-    }
-
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('auth.login')->with('error','You logged out successfully');
+        return redirect()->route('auth.login')->with('error','User logged out successfully');
     }
     
     #[Layout('layouts.admin')]

@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                // Replace Figtree with Nunito
+                // Make Nunito the default sans font
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },

@@ -11,7 +11,7 @@
 <body class="bg-gray-100 font-sans">
 
     {{-- Header --}}
-    <div class="">Header</div>
+    @livewire('components.header')
 
     {{-- Page Content --}}
     <main>

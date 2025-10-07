@@ -13,19 +13,19 @@ class Checkrole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,$role)
     {
-        if(Auth::check())
-        {
-            if(Auth::user()->role === 'admin')
-            {
-                return redirect()->route('admin')->with('success','Welcome in admin panel');
-            }
-            else
-            {
-                return redirect()->route('dashboard')->with('success','Welcome in Dashboard');      
-            }            
-        }            
+        // Check if user is logged in
+        if (!Auth::check()) {
+            return redirect()->route('auth.login')->with('error', 'You must be logged in to access this page.');
+        }
+        
+        // Check if the logged-in user has the required role
+        if (Auth::user()->role !== $role) {
+            return redirect()->route('auth.login')->with('error', 'You do not have permission to access this page.');
+        }
 
+        // If role matches, allow request to proceed
+        return $next($request);
     }
 }
