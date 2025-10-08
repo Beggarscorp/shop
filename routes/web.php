@@ -20,10 +20,14 @@ use App\Livewire\Admin\EditCategory;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Signup;
 
+
 use App\Http\Middleware\Checkrole;
 
 Route::get('/', Index::class)->name('home');
 Route::get('/shop', Shop::class)->name('shop');
+
+// pages
+
 
 // admin routes
 Route::middleware(Checkrole::class.':admin')->group(function () {
