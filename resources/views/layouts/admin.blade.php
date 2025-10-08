@@ -15,7 +15,6 @@
 
     {{-- Admin Content --}}
     <main class="flex-1 overflow-y-scroll">
-        @livewire('components.adminheader')
         <div class="p-5">
             {{ $slot }}
         </div>

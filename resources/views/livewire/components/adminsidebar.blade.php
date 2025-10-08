@@ -1,11 +1,52 @@
-<div class="bg-blue-800 text-white p-5">
-    <div class="space-y-5">
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('admin') }}" wire:navigate>Admin</a></div>
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('shop') }}" wire:navigate>Shop</a></div>
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('admin.add-product') }}" wire:navigate>Add Product</a></div>
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('admin.add-category') }}" wire:navigate>Add Category</a></div>
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('admin.categories') }}" wire:navigate>Categories</a></div>
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('admin.products') }}" wire:navigate>Products</a></div>
-        <div><a class="bg-blue-600 px-5 py-1 rounded" href="{{ route('admin.orders') }}" wire:navigate>Orders</a></div>
+<div class="bg-blue-900 text-white h-screen w-64 p-6 flex flex-col justify-between shadow-lg">
+    <!-- Logo / Brand -->
+    <div class="mb-10">
+        <h1 class="text-2xl font-bold mb-6 text-center">Admin Panel</h1>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="space-y-2">
+        <a href="{{ route('admin') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-tachometer-alt mr-3"></i> Dashboard
+        </a>
+
+        <a href="{{ route('shop') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-store mr-3"></i> Shop
+        </a>
+
+        <a href="{{ route('admin.add-product') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-plus mr-3"></i> Add Product
+        </a>
+
+        <a href="{{ route('admin.add-category') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-plus-circle mr-3"></i> Add Category
+        </a>
+
+        <a href="{{ route('admin.categories') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-tags mr-3"></i> Categories
+        </a>
+
+        <a href="{{ route('admin.products') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-box mr-3"></i> Products
+        </a>
+
+        <a href="{{ route('admin.orders') }}" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-shopping-cart mr-3"></i> Orders
+        </a>
+    </nav>
+
+    <!-- Logout or Footer -->
+    <div class="mt-10">
+        <button wire:click="logout()" 
+           class="flex items-center px-4 py-2 rounded-lg hover:bg-red-600 transition-colors duration-200">
+            <i class="fas fa-sign-out-alt mr-3"></i> Logout
+        </button>
     </div>
 </div>

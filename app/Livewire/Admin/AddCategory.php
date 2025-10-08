@@ -12,7 +12,13 @@ use Livewire\WithFileUploads;
 class AddCategory extends Component
 {
     use WithFileUploads;
-    public $name , $slug , $description , $image;
+    public $name , $slug , $parent_id, $description , $image;
+    public $categories = [];
+
+    public function mount()
+    {
+        $this->categories=Categories::all();
+    }
 
     public function generateSlug($value)
     {
@@ -24,7 +30,7 @@ class AddCategory extends Component
         $this->validate([
             'name' => 'required|string|max:255|unique:categories,name',
             'slug' => 'required|string|max:255|unique:categories,slug',
-            'description' => 'nullable|string',
+            'parent_id' => 'nullable|exists:categories,id',
             'image' => 'nullable|image|max:1024',
         ]);
 
@@ -36,12 +42,13 @@ class AddCategory extends Component
         Categories::create([
             'name' => $this->name,
             'slug' => $this->slug,
-            'description' => $this->description,
+            'parent_id' => $this->parent_id,
             'image' => $imagePath,
         ]);
 
         session()->flash('success', '✅ Category added successfully!');
         $this->reset();
+        $this->mount();
     }
     public function render()
     {

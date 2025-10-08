@@ -15,6 +15,7 @@ use App\Livewire\Admin\EditProduct;
 use App\Livewire\Admin\Categories;
 use App\Livewire\Admin\Products;
 use App\Livewire\Admin\Orders;
+use App\Livewire\Admin\EditCategory;
 
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Signup;
@@ -33,6 +34,7 @@ Route::middleware(Checkrole::class.':admin')->group(function () {
     Route::get('admin/add-category',AddCategory::class)->name('admin.add-category');
     Route::get('admin/products',Products::class)->name('admin.products');
     Route::get('admin/categories',Categories::class)->name('admin.categories');
+    Route::get('admin/edit-category/{id}',EditCategory::class)->name('admin.edit-category');
     Route::get('admin/orders',Orders::class)->name('admin.orders');
     
 });
