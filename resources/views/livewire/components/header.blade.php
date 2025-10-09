@@ -7,18 +7,18 @@
     </div>
 
     <!-- Icons -->
-    <div class="flex items-center space-x-4">
-      <button aria-label="User" class="hover:text-gray-300">
-        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+    <div class="flex items-center space-x-2">
+      <a aria-label="User" class="hover:text-gray-300 cursor-pointer">
+        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
         </svg>
-      </button>
+      </a>
 
-      <button aria-label="Cart" class="hover:text-gray-300">
-        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <a  wire:navigate href="{{ route('products-cart') }}"  aria-label="Cart" class="hover:text-gray-300 cursor-pointer">
+        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
         </svg>
-      </button>
+      </a>
 
     </div>
   </div>
@@ -59,12 +59,3 @@
     </div>
   </nav>
 </header>
-
-<script>
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('mobile-menu');
-
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-  });
-</script>

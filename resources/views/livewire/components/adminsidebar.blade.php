@@ -6,37 +6,37 @@
 
     <!-- Navigation Links -->
     <nav class="space-y-2">
-        <a href="{{ route('admin') }}" 
+        <a wire:navigate href="{{ route('admin') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-tachometer-alt mr-3"></i> Dashboard
         </a>
 
-        <a href="{{ route('shop') }}" 
+        <a target="_blank" href="{{ route('shop') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-store mr-3"></i> Shop
         </a>
 
-        <a href="{{ route('admin.add-product') }}" 
+        <a wire:navigate href="{{ route('admin.add-product') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-plus mr-3"></i> Add Product
         </a>
 
-        <a href="{{ route('admin.add-category') }}" 
+        <a wire:navigate href="{{ route('admin.add-category') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-plus-circle mr-3"></i> Add Category
         </a>
 
-        <a href="{{ route('admin.categories') }}" 
+        <a wire:navigate href="{{ route('admin.categories') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-tags mr-3"></i> Categories
         </a>
 
-        <a href="{{ route('admin.products') }}" 
+        <a wire:navigate href="{{ route('admin.products') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-box mr-3"></i> Products
         </a>
 
-        <a href="{{ route('admin.orders') }}" 
+        <a wire:navigate href="{{ route('admin.orders') }}" 
            class="flex items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
             <i class="fas fa-shopping-cart mr-3"></i> Orders
         </a>

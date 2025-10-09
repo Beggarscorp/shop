@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Cart;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Index;
 
@@ -22,9 +23,13 @@ use App\Livewire\Auth\Signup;
 
 
 use App\Http\Middleware\Checkrole;
+use App\Livewire\ProductDetails;
 
 Route::get('/', Index::class)->name('home');
-Route::get('/shop', Shop::class)->name('shop');
+Route::get('shop', Shop::class)->name('shop');
+Route::get('shop/{slug}/{categoryid}', Shop::class)->name('shop.category');
+Route::get('product-details/{id}',ProductDetails::class)->name('product-details');
+Route::get('products-cart',Cart::class)->name("products-cart");
 
 // pages
 
