@@ -10,6 +10,7 @@ use App\Models\Products;
 class Shop extends Component
 {
     public $products;
+    public $message;
     public function mount($categoryid = null)
     {
         if(!empty($categoryid))
@@ -21,6 +22,13 @@ class Shop extends Component
             $this->products=Products::all();
         }
     }
+
+    public function addtocart($productid)
+    {
+        addToCart($productid);
+        $this->dispatch('cartUpdated');
+    }
+
     public function render()
     {
         return view('livewire.shop');

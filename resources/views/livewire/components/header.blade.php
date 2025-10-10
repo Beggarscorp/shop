@@ -1,4 +1,17 @@
 <header class="w-full shadow-md">
+
+
+    @if (session('success'))
+        <div
+            x-data="{ show: true }"
+            x-show="show"
+            x-init="setTimeout(() => show = false, 3000)"
+            class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg"
+        >
+            {{ session('success') }}
+        </div>
+    @endif
+
   <!-- Upper Header -->
   <div class="flex justify-between items-center px-4 py-3 bg-yellow-500 text-white">
     <!-- Logo -->
@@ -14,11 +27,18 @@
         </svg>
       </a>
 
-      <a  wire:navigate href="{{ route('products-cart') }}"  aria-label="Cart" class="hover:text-gray-300 cursor-pointer">
+      <a  wire:navigate href="{{ route('products-cart') }}"  aria-label="Cart" class="hover:text-gray-300 cursor-pointer relative">
         <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
         </svg>
+        @if($cartCount > 0)
+          <span class="absolute -top-2 -right-2 bg-yellow-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {{ $cartCount }}
+          </span>
+        @endif
       </a>
+
+      
 
     </div>
   </div>
