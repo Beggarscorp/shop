@@ -12,7 +12,8 @@ class Cart extends Component
     public $cart;
     public $cart_products=[];
     public $total_price;
-
+    public $message;
+    public $getProductTotalPrice;
     
     public function mount()
     {
@@ -23,19 +24,16 @@ class Cart extends Component
             $products = Products::whereIn('id', $productIds)->get();
 
             $this->cart_products = $products->map(function ($product) {
-                $product->quantity = $this->cart[$product->id]['quantity'] ?? 1;
+                $product->quantity = getProductQuantity($product->id);
+                $product->getProductTotalPrice = getProductTotalPrice($product->id,$product->price);
                 return $product;
             });
         }
-        $this->totalPrice();
-    }
-    public function totalPrice()
-    {
-        $this->total_price = 0; // reset first
-
-        foreach ($this->cart_products as $product) {
-            $this->total_price += ($product->sale_price ?? $product->price)  * $product->quantity;
+        else
+        {
+            $this->message="Product not available in cart!";
         }
+        $this->total_price=getCartTotal();
     }
 
     public function increasequantity($productid)

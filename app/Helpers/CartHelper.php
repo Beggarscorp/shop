@@ -67,3 +67,38 @@ if (!function_exists('decreaseQuantity')) {
         }
     }
 }
+
+if (!function_exists('getCartTotal')) {
+    function getCartTotal() {
+        $cart = getCart();
+        $total = 0;
+
+        foreach ($cart as $item) {
+            // Fetch product from database using its ID
+            $product = \App\Models\Products::find($item['product_id']);
+            if ($product) {
+                // Use sale_price if available, otherwise use price
+                $price = $product->sale_price ?? $product->price;
+                $total += $price * $item['quantity'];
+            }
+        }
+
+        return number_format($total, 2, '.', '');
+    }
+}
+
+if (!function_exists('getProductQuantity')) {
+    function getProductQuantity($productId) {
+        $cart = getCart();
+        return $cart[$productId]['quantity'] ?? 1;
+    }
+}
+
+if (!function_exists('getProductTotalPrice')) {
+    function getProductTotalPrice($productId, $price) {
+        $cart = getCart();
+        $quantity = $cart[$productId]['quantity'] ?? 1;
+
+        return number_format($price * $quantity,2,'.','');
+    }
+}
