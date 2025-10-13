@@ -9,3 +9,9 @@
 body {
     font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
 }
+@layer components {
+  .heading
+  {
+      @apply mb-10 text-center text-3xl text-yellow-500 uppercase font-semibold;
+  }
+  }

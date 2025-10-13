@@ -8,6 +8,21 @@
         </div>
     </section>
 
+    <!-- categories -->
     @livewire('components.homepage.category')
+    
+    <!-- best seller -->
+    @livewire('components.homepage.bestseller')
+
+    <!-- studio video -->
+    <section class="pb-20">
+        <div class="heading">Visit beggars corporation studio in varanasi</div>
+        <div class="">
+            <video src="{{ asset('assets/videos/office-tour-video.mp4') }}" autoplay 
+            muted 
+            loop 
+            playsinline class="w-full h-[90vh] object-cover"></video>
+        </div>
+    </section>
     
 </div>

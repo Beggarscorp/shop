@@ -1,7 +1,7 @@
 <section>
-    <div class="container mx-auto pb-10">
+    <div class="container mx-auto pb-20">
 
-        <div class="mb-10 text-center text-4xl text-yellow-500">Categories</div>
+        <div class="heading">Categories</div>
 
         <div class="grid grid-cols-3">
 
