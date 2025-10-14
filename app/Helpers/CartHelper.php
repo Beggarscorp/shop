@@ -95,10 +95,10 @@ if (!function_exists('getProductQuantity')) {
 }
 
 if (!function_exists('getProductTotalPrice')) {
-    function getProductTotalPrice($productId, $price) {
+    function getProductTotalPrice($productId, $price=null, $sale_price=null) {
         $cart = getCart();
         $quantity = $cart[$productId]['quantity'] ?? 1;
 
-        return number_format($price * $quantity,2,'.','');
+        return number_format(($sale_price ?? $price) * $quantity,2,'.','');
     }
 }

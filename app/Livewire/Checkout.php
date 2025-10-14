@@ -7,13 +7,9 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-class Cart extends Component
+class Checkout extends Component
 {
-    public $cart;
-    public $cart_products=[];
-    public $total_price;
-    public $message;
-    public $getProductTotalPrice;
+    public $cart, $total_price, $cart_products, $message;
     
     public function mount()
     {
@@ -35,27 +31,8 @@ class Cart extends Component
         }
         $this->total_price=getCartTotal();
     }
-
-    public function increasequantity($productid)
-    {
-        increaseQuantity($productid);
-        $this->mount();
-    }
-    
-    public function decreasequantity($productid)
-    {
-        decreaseQuantity($productid);
-        $this->mount();
-    }
-
-    public function removeproductfromcart($productid)
-    {
-        removeFromCart($productid);
-        $this->mount();
-    }
-    
     public function render()
     {
-        return view('livewire.cart');
+        return view('livewire.checkout');
     }
 }

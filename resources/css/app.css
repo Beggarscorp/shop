@@ -14,4 +14,8 @@ body {
   {
       @apply mb-10 text-center text-3xl text-yellow-500 uppercase font-semibold;
   }
+  .input_field
+  {
+    @apply w-full p-2 focus:outline-0 border border-gray-400 rounded shadow text-gray-700;
   }
+}

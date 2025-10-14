@@ -6,10 +6,6 @@
             <!-- left section where i am showing all cart products -->
             <div class="col-span-8">
                 
-                    @if (!empty($message))
-                        <div class="text-3xl text-gray-400 p-5">{{$message}}</div>
-                    @endif
-
                 <table>
                     <thead>
                         <tr class="border-b-1 border-gray-400">
@@ -21,11 +17,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @foreach ($cart_products as $product)
                         <tr class="border-b-1 border-gray-400">
                             <td class="py-2 px-4 w-1/8"><img src="{{ Storage::url($product->productimage) }}" alt="product-image" class="rounded"></td>
                             <td class="py-2 px-4">{{ $product->productname }}</td>
-                            <td class="py-2 px-4">{{ $product->price }}</td>
+                            <td class="py-2 px-4">{{ $product->sale_price ?? $product->price }}</td>
                             <td class="py-2 px-4">
                                 <div class="flex space-x-5">
                                     <button wire:click="increasequantity({{ $product->id }})" class="cursor-pointer">
@@ -52,6 +49,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                
+                    @if (!empty($message))
+                        <div class="text-3xl text-gray-400 p-5">{{$message}}</div>
+                    @endif
+                    
                 
             </div>
             
@@ -83,7 +85,9 @@
                     </div>
 
                     <!-- proceed to checkout button  -->
-                     <button class="w-full bg-yellow-600 text-white py-1 font-semibold">Proceed to Checkout</button>
+                     <a href="{{ route('checkout') }}" wire:navigate >
+                         <button class="cursor-pointer w-full bg-yellow-600 text-white py-1 font-semibold">Proceed to Checkout</button>
+                     </a>
 
                 </div>
             </div>

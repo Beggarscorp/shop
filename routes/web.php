@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Cart;
+use App\Livewire\Checkout;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Index;
 
@@ -30,6 +31,7 @@ Route::get('shop', Shop::class)->name('shop');
 Route::get('shop/{slug}/{categoryid}', Shop::class)->name('shop.category');
 Route::get('product-details/{id}',ProductDetails::class)->name('product-details');
 Route::get('products-cart',Cart::class)->name("products-cart");
+Route::get('checkout',Checkout::class)->name('checkout');
 
 // pages
 
