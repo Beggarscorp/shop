@@ -78,8 +78,10 @@ if (!function_exists('getCartTotal')) {
             $product = \App\Models\Products::find($item['product_id']);
             if ($product) {
                 // Use sale_price if available, otherwise use price
-                $price = $product->sale_price ?? $product->price;
-                $total += $price * $item['quantity'];
+                $priceToUse = ($product->sale_price && $product->sale_price > 0)
+                    ? $product->sale_price
+                    : $product->price;
+                $total += $priceToUse * $item['quantity'];
             }
         }
 
@@ -95,10 +97,28 @@ if (!function_exists('getProductQuantity')) {
 }
 
 if (!function_exists('getProductTotalPrice')) {
-    function getProductTotalPrice($productId, $price=null, $sale_price=null) {
+    function getProductTotalPrice($productId) {
+        // Fetch product details
+        $product = \App\Models\Products::find($productId);
+
+        if (!$product) {
+            return 0; // Return 0 if product not found
+        }
+
+        // Get cart and quantity
         $cart = getCart();
         $quantity = $cart[$productId]['quantity'] ?? 1;
 
-        return number_format(($sale_price ?? $price) * $quantity,2,'.','');
+        // ✅ Use sale price only if it’s greater than 0, otherwise use regular price
+        $priceToUse = ($product->sale_price && $product->sale_price > 0)
+            ? $product->sale_price
+            : $product->price;
+
+        // Calculate total
+        $total = $priceToUse * $quantity;
+
+        // Return formatted total
+        return number_format($total, 2, '.', '');
     }
 }
+

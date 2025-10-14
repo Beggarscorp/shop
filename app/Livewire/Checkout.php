@@ -21,7 +21,7 @@ class Checkout extends Component
 
             $this->cart_products = $products->map(function ($product) {
                 $product->quantity = getProductQuantity($product->id);
-                $product->getProductTotalPrice = getProductTotalPrice($product->id,$product->sale_price ?? $product->price);
+                $product->getProductTotalPrice = getProductTotalPrice($product->id);
                 return $product;
             });
         }
