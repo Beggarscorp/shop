@@ -1,12 +1,6 @@
 <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-8">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800 border-b pb-3">Add New Category</h2>
 
-    @if (session('success'))
-        <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-4 border border-green-300">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <form wire:submit.prevent="save" class="space-y-6">
         <!-- Category Name -->
         <div>

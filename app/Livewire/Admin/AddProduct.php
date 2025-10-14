@@ -86,7 +86,7 @@ class AddProduct extends Component
             'spacification', 'impact_product', 'min_order', 'status'
         ]);
 
-        session()->flash('success', 'Product added successfully!');
+        $this->dispatch('show-toast',message:'✅ Product added successfully!');
     }
 
     public function render()

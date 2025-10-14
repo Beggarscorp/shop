@@ -11,7 +11,9 @@ class Products extends Component
 {
     public function deleteProduct($id)
     {
-        dd($id);
+        $product=Allproducts::find($id);
+        $product->delete();
+        $this->dispatch('show-toast',message:'Product deleted successfully!');
     }
     public function render()
     {

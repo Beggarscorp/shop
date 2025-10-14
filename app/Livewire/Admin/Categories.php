@@ -22,7 +22,7 @@ class Categories extends Component
         $category = Category::findOrFail($id);
         $category->delete();
 
-        session()->flash('success', 'Category deleted successfully.');
+        $this->dispatch('show-toast',message:'Category deleted successfully!');
         $this->mount(); // refresh list
     }
 

@@ -1,4 +1,15 @@
 <div class="bg-blue-900 text-white h-screen w-64 p-6 flex flex-col justify-between shadow-lg">
+
+      <div 
+        x-data="{ show: false, message: '' }" 
+        x-on:show-toast.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)" 
+        x-show="show" 
+        x-transition 
+        class="fixed top-5 right-5 bg-green-600 text-white px-5 py-3 rounded-lg shadow-lg z-10">
+        <span x-text="message"></span>
+      </div>
+
+
     <!-- Logo / Brand -->
     <div class="mb-10">
         <h1 class="text-2xl font-bold mb-6 text-center">Admin Panel</h1>

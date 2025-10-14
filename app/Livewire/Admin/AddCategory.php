@@ -46,7 +46,7 @@ class AddCategory extends Component
             'image' => $imagePath,
         ]);
 
-        session()->flash('success', '✅ Category added successfully!');
+        $this->dispatch('show-toast',message:'✅ Category added successfully!');
         $this->reset();
         $this->mount();
     }

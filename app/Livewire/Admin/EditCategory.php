@@ -57,8 +57,7 @@ class EditCategory extends Component
         }
 
         $category->save();
-
-        return redirect()->route('admin.categories')->with('success', 'Category updated successfully!');
+        $this->dispatch('show-toast',message:'Category updated successfully!');
     }
     public function render()
     {

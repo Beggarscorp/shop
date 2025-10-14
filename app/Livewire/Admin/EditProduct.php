@@ -103,7 +103,7 @@ class EditProduct extends Component
             'status' => $this->status,
         ]);
 
-        session()->flash('success', 'Product updated successfully!');
+        $this->dispatch('show-toast',message:'Product updated successfully!');
     }
     public function render()
     {

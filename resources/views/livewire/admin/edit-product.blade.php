@@ -2,12 +2,6 @@
     <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl p-6">
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">Edit Product</h2>
 
-        @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-800 px-4 py-2 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
         <form wire:submit.prevent="updateProduct" class="space-y-6">
 
             <!-- Product Name & Slug -->

@@ -1,12 +1,6 @@
 <div class="max-w-6xl mx-auto px-4">
     <h1 class="text-3xl font-bold mb-6 text-gray-800">Add New Product</h1>
 
-    @if (session('success'))
-        <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-4 border border-green-300">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <form wire:submit.prevent="save" enctype="multipart/form-data" class="space-y-8 bg-white p-8 rounded-lg shadow-md">
 
         <!-- Product Info -->
