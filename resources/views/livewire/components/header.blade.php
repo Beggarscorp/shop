@@ -1,16 +1,15 @@
 <header class="w-full shadow-md">
 
 
-    @if (session('success'))
-        <div
-            x-data="{ show: true }"
-            x-show="show"
-            x-init="setTimeout(() => show = false, 3000)"
-            class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg"
-        >
-            {{ session('success') }}
-        </div>
-    @endif
+      <div 
+        x-data="{ show: false, message: '' }" 
+        x-on:show-toast.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)" 
+        x-show="show" 
+        x-transition 
+        class="fixed top-5 right-5 bg-green-600 text-white px-5 py-3 rounded-lg shadow-lg z-10">
+        <span x-text="message"></span>
+      </div>
+
 
   <!-- Upper Header -->
   <div class="flex justify-between items-center px-4 py-3 bg-yellow-500 text-white">

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire;
 
 use App\Models\Products;
@@ -9,16 +8,21 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class Cart extends Component
 {
-    public $cart;
-    public $cart_products=[];
+    public $cart = [];
+    public $cart_products = [];
     public $total_price;
     public $message;
-    public $getProductTotalPrice;
-    
+
     public function mount()
     {
+        $this->refreshCart();
+    }
+
+    // Dedicated method to refresh cart
+    public function refreshCart()
+    {
         $this->cart = getCart();
-        
+
         if (!empty($this->cart)) {
             $productIds = collect($this->cart)->pluck('product_id')->toArray();
             $products = Products::whereIn('id', $productIds)->get();
@@ -28,32 +32,36 @@ class Cart extends Component
                 $product->getProductTotalPrice = getProductTotalPrice($product->id);
                 return $product;
             });
+            $this->message = null;
+        } else {
+            $this->cart_products = [];
+            $this->message = "Product not available in cart!";
         }
-        else
-        {
-            $this->message="Product not available in cart!";
-        }
-        $this->total_price=getCartTotal();
+
+        $this->total_price = getCartTotal();
     }
 
+    // Increase quantity
     public function increasequantity($productid)
     {
         increaseQuantity($productid);
-        $this->mount();
+        $this->refreshCart();
     }
-    
+
+    // Decrease quantity
     public function decreasequantity($productid)
     {
         decreaseQuantity($productid);
-        $this->mount();
+        $this->refreshCart();
     }
 
+    // Remove product
     public function removeproductfromcart($productid)
     {
         removeFromCart($productid);
-        $this->mount();
+        $this->refreshCart();
     }
-    
+
     public function render()
     {
         return view('livewire.cart');

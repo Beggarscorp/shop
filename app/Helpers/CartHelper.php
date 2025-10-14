@@ -1,21 +1,42 @@
 <?php
 
 use Illuminate\Support\Facades\Session;
+use App\Models\Products;
+
+// ------------------------------
+// CART SESSION HELPERS
+// ------------------------------
 
 if (!function_exists('getCart')) {
-    function getCart() {
+    function getCart(): array
+    {
         return Session::get('cart', []);
     }
 }
 
 if (!function_exists('saveCart')) {
-    function saveCart($cart) {
+    function saveCart(array $cart): void
+    {
         Session::put('cart', $cart);
+        Session::save(); // Ensure Livewire sees the latest session
     }
 }
 
+if (!function_exists('clearCart')) {
+    function clearCart(): void
+    {
+        Session::forget('cart');
+        Session::save();
+    }
+}
+
+// ------------------------------
+// CART ACTIONS
+// ------------------------------
+
 if (!function_exists('addToCart')) {
-    function addToCart($productId, $quantity = 1) {
+    function addToCart(int $productId, int $quantity = 1): void
+    {
         $cart = getCart();
 
         if (isset($cart[$productId])) {
@@ -32,21 +53,25 @@ if (!function_exists('addToCart')) {
 }
 
 if (!function_exists('removeFromCart')) {
-    function removeFromCart($productId) {
+    function removeFromCart(int $productId): void
+    {
         $cart = getCart();
-        unset($cart[$productId]);
-        saveCart($cart);
-    }
-}
 
-if (!function_exists('clearCart')) {
-    function clearCart() {
-        Session::forget('cart');
+        if (isset($cart[$productId])) {
+            unset($cart[$productId]);
+        }
+
+        if (empty($cart)) {
+            clearCart();
+        } else {
+            saveCart($cart);
+        }
     }
 }
 
 if (!function_exists('increaseQuantity')) {
-    function increaseQuantity($productId) {
+    function increaseQuantity(int $productId): void
+    {
         $cart = getCart();
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity']++;
@@ -56,69 +81,69 @@ if (!function_exists('increaseQuantity')) {
 }
 
 if (!function_exists('decreaseQuantity')) {
-    function decreaseQuantity($productId) {
+    function decreaseQuantity(int $productId): void
+    {
         $cart = getCart();
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity']--;
+
             if ($cart[$productId]['quantity'] <= 0) {
                 unset($cart[$productId]);
             }
+        }
+
+        if (empty($cart)) {
+            clearCart();
+        } else {
             saveCart($cart);
         }
     }
 }
 
-if (!function_exists('getCartTotal')) {
-    function getCartTotal() {
-        $cart = getCart();
-        $total = 0;
-
-        foreach ($cart as $item) {
-            // Fetch product from database using its ID
-            $product = \App\Models\Products::find($item['product_id']);
-            if ($product) {
-                // Use sale_price if available, otherwise use price
-                $priceToUse = ($product->sale_price && $product->sale_price > 0)
-                    ? $product->sale_price
-                    : $product->price;
-                $total += $priceToUse * $item['quantity'];
-            }
-        }
-
-        return number_format($total, 2, '.', '');
-    }
-}
+// ------------------------------
+// CART DATA HELPERS
+// ------------------------------
 
 if (!function_exists('getProductQuantity')) {
-    function getProductQuantity($productId) {
+    function getProductQuantity(int $productId): int
+    {
         $cart = getCart();
-        return $cart[$productId]['quantity'] ?? 1;
+        return $cart[$productId]['quantity'] ?? 0;
     }
 }
 
 if (!function_exists('getProductTotalPrice')) {
-    function getProductTotalPrice($productId) {
-        // Fetch product details
-        $product = \App\Models\Products::find($productId);
+    function getProductTotalPrice(int $productId): float
+    {
+        $product = Products::find($productId);
+        if (!$product) return 0;
 
-        if (!$product) {
-            return 0; // Return 0 if product not found
-        }
-
-        // Get cart and quantity
-        $cart = getCart();
-        $quantity = $cart[$productId]['quantity'] ?? 1;
-
-        // ✅ Use sale price only if it’s greater than 0, otherwise use regular price
+        $quantity = getProductQuantity($productId);
         $priceToUse = ($product->sale_price && $product->sale_price > 0)
             ? $product->sale_price
             : $product->price;
 
-        // Calculate total
-        $total = $priceToUse * $quantity;
-
-        // Return formatted total
-        return number_format($total, 2, '.', '');
+        return round($priceToUse * $quantity, 2);
     }
 }
 
+if (!function_exists('getCartTotal')) {
+    function getCartTotal(): float
+    {
+        $cart = getCart();
+        $total = 0;
+
+        foreach ($cart as $item) {
+            $product = Products::find($item['product_id']);
+            if ($product) {
+                $priceToUse = ($product->sale_price && $product->sale_price > 0)
+                    ? $product->sale_price
+                    : $product->price;
+
+                $total += $priceToUse * $item['quantity'];
+            }
+        }
+
+        return round($total, 2);
+    }
+}

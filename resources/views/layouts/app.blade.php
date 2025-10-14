@@ -20,6 +20,7 @@
         {{ $slot }}
     </main>
 
+    <script src="//unpkg.com/alpinejs" defer></script>
     {{-- Footer --}}
     @livewire('components.footer')
 

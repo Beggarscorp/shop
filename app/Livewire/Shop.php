@@ -22,11 +22,16 @@ class Shop extends Component
             $this->products=Products::all();
         }
     }
+    public function hydrate()
+{
+    $this->mount(); // re-fetch products on SPA navigation
+}
 
     public function addtocart($productid)
     {
         addToCart($productid);
         $this->dispatch('cartUpdated');
+        $this->dispatch('show-toast', message: 'Product added to cart successfully!');
     }
 
     public function render()
