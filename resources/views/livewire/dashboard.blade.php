@@ -1,4 +1,3 @@
-<div>
-    {{ $user }}
-    <button wire:click="logout" class="text-red-400">Logout</button>
+<div class="p-5">
+    <div class="text-md">Customer Dashboard</div>
 </div>

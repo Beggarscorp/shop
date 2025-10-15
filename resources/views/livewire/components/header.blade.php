@@ -18,13 +18,29 @@
       <a href="/"><img src="{{ asset('assets/images/logos/header-logo.png') }}" alt="logo" class="w-1/4"></a>
     </div>
 
+    
+    
     <!-- Icons -->
     <div class="flex items-center space-x-2">
-      <a aria-label="User" class="hover:text-gray-300 cursor-pointer">
-        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
+      <!-- when customer logged in  -->
+      @auth
+        <a wire:navigate href="{{ route('dashboard') }}" aria-label="User" class="hover:text-gray-300 cursor-pointer">
+          <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+        </a>
+      @endauth
+
+      <!-- when customer logged out -->
+      @guest
+      <a wire:navigate href="{{ route('auth.login') }}">
+        <svg class="w-8 h-8 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28" aria-hidden="true">
+        <circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 22c0-4 5-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       </a>
+      @endguest
+
 
       <a  wire:navigate href="{{ route('products-cart') }}"  aria-label="Cart" class="hover:text-gray-300 cursor-pointer relative">
         <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">

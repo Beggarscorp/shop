@@ -31,7 +31,6 @@ Route::get('shop', Shop::class)->name('shop');
 Route::get('shop/{slug}/{categoryid}', Shop::class)->name('shop.category');
 Route::get('product-details/{id}',ProductDetails::class)->name('product-details');
 Route::get('products-cart',Cart::class)->name("products-cart");
-Route::get('checkout',Checkout::class)->name('checkout');
 
 // pages
 
@@ -52,7 +51,8 @@ Route::middleware(Checkrole::class.':admin')->group(function () {
 
 Route::middleware(Checkrole::class.':customer')->group(function () {
     
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::get('checkout',Checkout::class)->name('checkout');
 
 });
 

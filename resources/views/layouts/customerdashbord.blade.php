@@ -15,15 +15,27 @@
     {{-- Header --}}
     @livewire('components.header')
 
-    {{-- Page Content --}}
-    <main wire:navigate.persist>
-        {{ $slot }}
-    </main>
+    <div class="container mx-auto p-5 m-5 shadow-lg rounded text-gray-600">
+
+        <div class="grid grid-cols-12">
+
+            <div class="col-span-2 border-r-1  bg-gray-200">
+                @livewire('components.customerdashboardsidebar')
+            </div>
+            <div class="col-span-10">
+                {{-- Page Content --}}
+                <main wire:navigate.persist>
+                    {{ $slot }}
+                </main>
+            </div>
+        </div>
+
+    </div>
 
     {{-- Footer --}}
     @livewire('components.footer')
 
-    @livewireScripts(['alpine' => true, 'navigate' => true])
+    @livewireScripts(['alpine' => false, 'navigate' => true])
 
 </body>
 </html>

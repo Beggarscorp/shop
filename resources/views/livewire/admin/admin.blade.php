@@ -65,11 +65,11 @@
         <table class="min-w-full table-auto border">
             <thead>
                 <tr class="bg-gray-100">
-                    <th class="px-4 py-2">Product Name</th>
-                    <th class="px-4 py-2">Category</th>
-                    <th class="px-4 py-2">Price</th>
-                    <th class="px-4 py-2">Stock</th>
-                    <th class="px-4 py-2">Date Added</th>
+                    <th class="text-start px-4 py-2">Product Name</th>
+                    <th class="text-start px-4 py-2">Category</th>
+                    <th class="text-start px-4 py-2">Price</th>
+                    <th class="text-start px-4 py-2">Stock</th>
+                    <th class="text-start px-4 py-2">Date Added</th>
                 </tr>
             </thead>
             <tbody>
