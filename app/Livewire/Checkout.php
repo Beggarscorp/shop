@@ -13,15 +13,15 @@ class Checkout extends Component
     
     public function mount()
     {
-        $this->cart = getCart();
+        $this->cart = cart()->getCart();
         
         if (!empty($this->cart)) {
             $productIds = collect($this->cart)->pluck('product_id')->toArray();
             $products = Products::whereIn('id', $productIds)->get();
 
             $this->cart_products = $products->map(function ($product) {
-                $product->quantity = getProductQuantity($product->id);
-                $product->getProductTotalPrice = getProductTotalPrice($product->id);
+                $product->quantity = cart()->getProductQuantity($product->id);
+                $product->getProductTotalPrice = cart()->getProductTotalPrice($product->id);
                 return $product;
             });
         }
@@ -29,7 +29,7 @@ class Checkout extends Component
         {
             $this->message="Product not available in cart!";
         }
-        $this->total_price=getCartTotal();
+        $this->total_price=cart()->getCartTotal();
     }
     public function render()
     {

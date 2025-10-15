@@ -23,13 +23,14 @@ class Shop extends Component
         }
     }
     public function hydrate()
-{
-    $this->mount(); // re-fetch products on SPA navigation
-}
+    {
+        $this->mount();
+        cart()->getCart();
+    }
 
     public function addtocart($productid)
     {
-        addToCart($productid);
+        cart()->addToCart($productid);
         $this->dispatch('cartUpdated');
         $this->dispatch('show-toast', message: 'Product added to cart successfully!');
     }

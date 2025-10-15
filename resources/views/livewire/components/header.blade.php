@@ -6,7 +6,7 @@
         x-on:show-toast.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)" 
         x-show="show" 
         x-transition 
-        class="fixed top-5 right-5 bg-green-600 text-white px-5 py-3 rounded-lg shadow-lg z-10">
+        class="fixed top-15 right-5 bg-green-600 text-white px-5 py-3 rounded-lg shadow-lg z-10">
         <span x-text="message"></span>
       </div>
 

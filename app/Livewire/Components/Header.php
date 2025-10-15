@@ -16,7 +16,7 @@ class Header extends Component
     #[\Livewire\Attributes\On('cartUpdated')]
     public function updateCartCount()
     {
-        $this->cartCount = count(array_column(getCart(), 'quantity'));
+        $this->cartCount = count(array_column(cart()->getCart(), 'quantity'));
         
     }
 
