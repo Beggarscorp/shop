@@ -4,7 +4,7 @@
         <div class="grid grid-cols-12">
             
             <!-- left section where i am showing all cart products -->
-            <div class="col-span-8">
+            <div class="lg:col-span-8 col-span-12">
                 
                 <table>
                     <thead>
@@ -22,7 +22,7 @@
                         @foreach ($cart_products as $product)
                         <tr class="border-b-1 border-gray-400">
                             <td class="py-2 px-4 w-1/8"><img src="{{ Storage::url($product->productimage) }}" alt="product-image" class="rounded"></td>
-                            <td class="py-2 px-4">{{ $product->productname }}</td>
+                            <td class="py-2 px-4 font-semibold">{{ $product->productname }}</td>
                             <td class="py-2 px-4">{{ ($product->sale_price && $product->sale_price > 0) ? $product->sale_price : $product->price }}</td>
                             <td class="py-2 px-4">
                                 <div class="flex space-x-5">
@@ -65,7 +65,7 @@
             </div>
             
             <!-- right section code, here i am showing price details -->
-            <div class="col-span-4 px-5">
+            <div class="lg:col-span-4 col-span-12 px-5 py-5 lg:py-0 ">
                 <div class="bg-gray-200 border-1 border-gray-300 p-5 space-y-5 rounded">
 
                     <div class="border-b-1 border-gray-400 pb-2 text-2xl text-yellow-600 font-semibold">Cart Totals</div>

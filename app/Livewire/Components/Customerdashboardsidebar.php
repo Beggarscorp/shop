@@ -3,8 +3,10 @@
 namespace App\Livewire\Components;
 
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Dashboard')]
 class Customerdashboardsidebar extends Component
 {
     public function logout()
