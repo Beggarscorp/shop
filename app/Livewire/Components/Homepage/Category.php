@@ -3,7 +3,6 @@
 namespace App\Livewire\Components\Homepage;
 
 use App\Models\Categories;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Category extends Component

@@ -14,26 +14,36 @@ class Login extends Component
     public $password;
 
     public function login()
-    {
-        $credentials = [
-            'email' => $this->email,
-            'password' => $this->password,
-        ];
-        if(Auth::attempt($credentials))
-        {
-            session()->regenerate();
-            if(Auth::user()->role === 'admin')
-            {
-                return redirect()->route('admin')->with('success', 'You logged in successfully');
-            }
-            if(Auth::user()->role === 'customer')
-            {
-                return redirect()->route('dashboard')->with('success', 'You logged in successfully');
-            }
+{
+    $credentials = [
+        'email' => $this->email,
+        'password' => $this->password,
+    ];
 
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+
+        // Check if email is verified
+        if (is_null($user->email_verified_at)) {
+            Auth::logout();
+            return redirect()->route('verification.notice')
+                ->with('error', 'Please verify your email before logging in.');
         }
-        return redirect()->route('admin')->back()->with('error', 'Invalid credentials');
+
+        session()->regenerate();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin')->with('success', 'You logged in successfully');
+        }
+
+        if ($user->role === 'customer') {
+            return redirect()->route('dashboard')->with('success', 'You logged in successfully');
+        }
     }
+
+    return back()->with('error', 'Invalid credentials');
+}
+
 
     #[Layout('layouts.guest')]
     public function render()

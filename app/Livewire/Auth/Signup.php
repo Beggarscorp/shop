@@ -7,6 +7,8 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\userverify;
 
 class Signup extends Component
 {
@@ -22,6 +24,14 @@ class Signup extends Component
         'password' => 'required|confirmed|min:6',
     ];
 
+    public function sendmail()
+    {
+        $to=$this->email;
+        $msg='Test email';
+        $subject="Test email by developer";
+        Mail::to($to)->send(new userverify($msg,$subject));
+        $this->dispatch('show-toast',message:'Mail sent successfully!');
+    }
     public function register()
     {
         $this->validate();
@@ -35,9 +45,10 @@ class Signup extends Component
 
         if($user)
         {
-            Auth::login($user);
+            // Send email verification
+            $user->sendEmailVerificationNotification();
 
-            return redirect()->route('admin')->with('success','User register and login successfully');
+            $this->dispatch('show-toast', message: 'Account created! Please verify your email.');
         }
         else
         {

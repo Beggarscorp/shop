@@ -12,13 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class userverify extends Mailable
 {
     use Queueable, SerializesModels;
+    public $msg,$subject;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($msg,$subject)
     {
         //
+        $this->msg=$msg;
+        $this->subject=$subject;
     }
 
     /**
@@ -27,7 +30,7 @@ class userverify extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Userverify',
+            subject: $this->msg,
         );
     }
 
@@ -37,7 +40,7 @@ class userverify extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'pages.about-us',
         );
     }
 

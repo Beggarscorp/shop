@@ -33,7 +33,7 @@
 
       <!-- when customer logged out -->
       @guest
-      <a wire:navigate href="{{ route('auth.login') }}">
+      <a wire:navigate href="{{ route('login') }}">
         <svg class="w-8 h-8 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28" aria-hidden="true">
         <circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M6 22c0-4 5-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

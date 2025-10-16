@@ -15,11 +15,11 @@
     {{-- Header --}}
     @livewire('components.header')
 
-    <div class="container mx-auto p-5 m-5 shadow-lg rounded text-gray-600">
+    <div class="container mx-auto p-5 m-5">
 
         <div class="grid grid-cols-12">
 
-            <div class="col-span-2 border-r-1  bg-gray-200">
+            <div class="col-span-2 border-r-1 border-gray-400 bg-gray-200">
                 @livewire('components.customerdashboardsidebar')
             </div>
             <div class="col-span-10">

@@ -35,6 +35,11 @@ class Shop extends Component
         $this->dispatch('show-toast', message: 'Product added to cart successfully!');
     }
 
+    public function filterProducts($cateid)
+    {
+        dd($cateid);
+    }
+
     public function render()
     {
         return view('livewire.shop');
