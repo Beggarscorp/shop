@@ -12,7 +12,7 @@ class Customerdashboardsidebar extends Component
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login')->with('success','User logged out successfully');
+        return redirect()->route('login')->with('success','Logged out successfully');
     }
     public function render()
     {

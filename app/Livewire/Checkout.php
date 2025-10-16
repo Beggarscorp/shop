@@ -10,6 +10,7 @@ use Livewire\Component;
 class Checkout extends Component
 {
     public $cart, $total_price, $cart_products, $message;
+    public $full_name,$email,$contact,$city,$state,$zip_code,$address;
     
     public function mount()
     {
@@ -31,6 +32,12 @@ class Checkout extends Component
         }
         $this->total_price=cart()->getCartTotal();
     }
+    
+    public function checkout()
+    {
+        dd($this->full_name,$this->email,$this->contact,$this->city,$this->state,$this->zip_code,$this->address);
+    }
+
     public function render()
     {
         return view('livewire.checkout');

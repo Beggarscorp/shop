@@ -14,6 +14,12 @@ class ProductDetails extends Component
     {
         $this->product=Products::findOrFail($id);
     }
+    public function addtocart($id)
+    {
+        cart()->addToCart($id);
+        $this->dispatch('cartUpdated');
+        $this->dispatch('show-toast', message: 'Product added to cart successfully!');
+    }
     public function render()
     {
         return view('livewire.product-details');
