@@ -5,11 +5,14 @@
     <!-- filter section -->
 
     <!-- <div class="w-1/3 bg-yellow-500 my-5 rounded-lg p-1"> -->
-        <select wire:change="filterProducts($event.target.value)" class="w-1/3 my-5 rounded-lg focus:outline-0 p-2 text-white bg-yellow-500">
-            <option>--- Select category ---</option>
-            <option value="4">Saree</option>
-            <option value="2">Enchanted shirt</option>
-            <option value="3">Laptops bags</option>
+        <select wire:change="filterProducts($event.target.value)" class="md:w-1/3 w-full my-5 rounded-lg focus:outline-0 p-2 bg-gray-300">
+            <option disabled selected>--- Select Category ---</option>
+            @foreach ($categories as $category)
+            
+                <option class="capitalize" value="{{ $category->id }}">{{ $category->name }}</option>
+
+            @endforeach
+            
         </select>
     <!-- </div> -->
 
