@@ -13,7 +13,7 @@
                         <img src="{{ Storage::url($category->image) }}" alt="category-image">
                         <div class="absolute top-0 w-full h-full">
                             <div class="bg-gradient-to-tr from-[#74746e] to-transparent flex justify-center items-center h-full">
-                                <div class="text-yellow-500 text-4xl uppercase">{{ $category->name }}</div>
+                                <div class="text-yellow-500 text-sm lg:text-4xl uppercase">{{ $category->name }}</div>
                             </div>
                         </div>
                     </a>

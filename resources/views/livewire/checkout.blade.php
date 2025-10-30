@@ -9,15 +9,15 @@
 
                     <div class="pb-5">
                         <label class="font-semibold" for="full_name">Full name</label><br>
-                        <input type="text" wire:model.defer="full_name" class="input_field" placeholder="Enter full name here...">
+                        <input type="text" wire:model="full_name" class="input_field" placeholder="Enter full name here...">
                     </div>
                     <div class="pb-5">
                         <label class="font-semibold" for="email">Email</label><br>
-                        <input type="email" wire:model.defer="email" class="input_field" placeholder="Enter your email here...">
+                        <input type="email" wire:model="email" class="input_field" placeholder="Enter your email here...">
                     </div>
                     <div class="pb-5">
                         <label class="font-semibold" for="contact">Contact</label><br>
-                        <input type="number" class="input_field appearance-none" wire:model.defer="contact" placeholder="Enter your contact number here...">
+                        <input type="number" class="input_field appearance-none" wire:model="contact" placeholder="Enter your contact number here...">
                     </div>
                     <div class="pb-5 grid grid-cols-3 gap-5">
                         <div class="">

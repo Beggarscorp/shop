@@ -59,8 +59,8 @@
   </div>
 
   <!-- Navigation Links -->
-  <nav class="bg-yellow-600 text-white flex justify-content-center">
-    <div class="max-w-7xl mx-auto px-4">
+  <nav x-data="{ open: false }" class="bg-yellow-600 text-white flex justify-content-center">
+    <div class="max-w-7xl md:mx-auto px-4">
       <div class="flex justify-between items-center">
         <!-- Desktop Links -->
         <div class="hidden md:flex space-x-6 py-2">
@@ -74,7 +74,7 @@
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex items-center">
-          <button id="menu-btn" class="focus:outline-none">
+          <button @click="open = true" id="menu-btn" class="focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -84,7 +84,18 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+    <div  id="mobile-menu" 
+          x-show="open" 
+          @click.outside="open = false"
+          x-show="open" 
+          @click.outside="open = false"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 transform -translate-y-2 scale-95"
+          x-transition:enter-end="opacity-100 transform translate-y-0 scale-100"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100 transform translate-y-0 scale-100"
+          x-transition:leave-end="opacity-0 transform -translate-y-2 scale-95" 
+          class=" px-4 pb-4 space-y-2">
       <a wire:navigate href="/" class="block py-2 hover:text-gray-300">Home</a>
       <a wire:navigate href="/shop" class="block py-2 hover:text-gray-300">Shop</a>
       <a wire:navigate href="#" class="block py-2 hover:text-gray-300">About</a>
