@@ -118,25 +118,4 @@
         </div>
     </section>
 
-    <div>
-    ...
- 
-    <div x-data="{ open: false }">
-        <button @click="open = true">Show More...</button>
- 
-        <ul 
-            x-show="open" 
-            @click.outside="open = false"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 transform -translate-y-2 scale-95"
-            x-transition:enter-end="opacity-100 transform translate-y-0 scale-100"
-            x-transition:leave="transition ease-in duration-150"
-            x-transition:leave-start="opacity-100 transform translate-y-0 scale-100"
-            x-transition:leave-end="opacity-0 transform -translate-y-2 scale-95"
-            >
-            <li><button wire:click="archive">Archive</button></li>
-            <li><button wire:click="delete">Delete</button></li>
-        </ul>
-    </div>
-</div>
 </div>

@@ -10,7 +10,7 @@ class Bestseller extends Component
     public $bestseller;
     public function mount()
     {
-        $this->bestseller = Products::where('category_id',2)->get();
+        $this->bestseller = Products::where('best_seller', 1)->get();
     }
     public function render()
     {

@@ -107,9 +107,12 @@
         @endif
     </div>
 </div>
+
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-    window.addEventListener('initRazorpay', event => {
+
+    window.addEventListener('initRazorpay', event => { 
         const options = {
             key: "{{ env('RAZORPAY_KEY') }}",
             amount: event.detail.amount,
@@ -129,7 +132,7 @@
                 color: '#FBBF24'
             }
         };
-        console.log(event.detail.contact);
+        
         const rzp = new Razorpay(options);
         rzp.on('payment.failed', function(response) {
             Livewire.dispatch('paymentFailed', response.error);
